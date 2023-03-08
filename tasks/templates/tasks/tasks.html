@@ -6,8 +6,28 @@
 Tasks
 {% endblock title %}
 
-
 {% block content %}
+<div class="container py-4 text-center">
   <h1>Tasks</h1>
+</div>
+
+<ul>
+  {% for task in tasks %}
+  <li>
+    {% if task.important %}
+    <h3 class="fw-bold text-success">
+      📌 {{task.title}}
+    </h3>
+    {% else %}
+    <h3 class="fw-bold">
+      {{task.title}}
+    </h3>
+    {% endif %}
+
+    <p>{{task.description}}</p>
+    <p>{{task.user.username}}</p>
+  </li>
+  {% endfor %}
+</ul>
+
 {% endblock content %}
-  
