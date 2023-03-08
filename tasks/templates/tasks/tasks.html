@@ -7,27 +7,40 @@ Tasks
 {% endblock title %}
 
 {% block content %}
-<div class="container py-4 text-center">
-  <h1>Tasks</h1>
-</div>
 
-<ul>
-  {% for task in tasks %}
-  <li>
-    {% if task.important %}
-    <h3 class="fw-bold text-success">
-      📌 {{task.title}}
-    </h3>
-    {% else %}
-    <h3 class="fw-bold">
-      {{task.title}}
-    </h3>
-    {% endif %}
+<main class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 py-5">
 
-    <p>{{task.description}}</p>
-    <p>{{task.user.username}}</p>
-  </li>
-  {% endfor %}
-</ul>
+      {% for task in tasks %}
+      <ul class="list-group">
+        {% if task.datecompleted %}
+        <h3 class="text-center display-6">Task Completed</h3>
+        {% else %}
+        <h3 class="text-center display-6">Task Pending</h3>
+        {% endif %}
+
+        <li class="list-group-item">
+          <header class="d-flex justify-content-between">
+            <a class="text-decoration-none" href="{% url 'task_detail' task.id %}">
+
+              {% if task.important %}
+              <h3 class="fw-bold text-success">📌 {{task.title}}</h3>
+              {% else %}
+              <h3 class="fw-bold">{{task.title}}</h3>
+              {% endif %}
+
+              <p class=" text-primary-emphasis fst-italic">{{task.user.username}}</p>
+              <p class="text-body">{{task.description}}</p>
+              <p class="text-body-secondary">{{task.datecompleted|date:"d M Y"}} </p>
+            </a>
+          </header>
+
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</main>
 
 {% endblock content %}

@@ -17,11 +17,17 @@
         <li class="nav-item {% if request.path == '/' %}active{% endif %} px-lg-4"><a class="nav-link"
             href="{% url 'home' %}">Home</a>
         </li>
-        <li class="nav-item {% if request.path == '/tasks/' %}active{% endif %} px-lg-4"><a class="nav-link"
-            href="{% url 'tasks' %}">Tasks</a>
-        </li>
 
         {% if user.is_authenticated %}
+        <li class="nav-item {% if request.path == '/tasks/' %}active{% endif %} px-lg-4"><a class="nav-link"
+            href="{% url 'tasks' %}">Tasks Pending</a>
+        </li>
+        <li class="nav-item {% if request.path == '/tasks_completed/' %}active{% endif %} px-lg-4">
+          <a class="nav-link" href="{% url 'tasks_completed' %}">Task Completed</a>
+        </li>
+        <li class="nav-item {% if request.path == '/tasks_create/' %}active{% endif %} px-lg-4">
+          <a class="nav-link" href="{% url 'task_create' %}">Create Task</a>
+        </li>
         <li class="nav-item {% if request.path == '/logout/' %}active{% endif %} px-lg-4"><a class="nav-link"
             href="{% url 'logout' %}">Logout</a>
         </li>
