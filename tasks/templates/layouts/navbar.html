@@ -18,11 +18,19 @@
             href="{% url 'home' %}">Home</a>
         </li>
         <li class="nav-item {% if request.path == '/tasks/' %}active{% endif %} px-lg-4"><a class="nav-link"
-          href="{% url 'tasks' %}">Tasks</a>
+            href="{% url 'tasks' %}">Tasks</a>
         </li>
+
+        {% if user.is_authenticated %}
+        <li class="nav-item {% if request.path == '/logout/' %}active{% endif %} px-lg-4"><a class="nav-link"
+            href="{% url 'logout' %}">Logout</a>
+        </li>
+        {% else %}
         <li class="nav-item {% if request.path == '/signup/' %}active{% endif %} px-lg-4"><a class="nav-link"
-          href="{% url 'signup' %}">Signup</a>
+            href="{% url 'signup' %}">Signup</a>
         </li>
+        {% endif %}
+
       </ul>
     </div>
   </div>
