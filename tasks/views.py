@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
+from .form import TaskForm
 
 # Create your views here.
 
@@ -35,6 +36,24 @@ def signup(request):
 
 def tasks(request):
   return render(request, 'tasks/tasks.html')
+
+def task_create(request):
+  if request.method == 'GET':
+    contex = {'form':TaskForm}
+    return render(request, 'tasks/task_create.html', contex)
+  else:
+    try:
+      form = TaskForm(request.POST)
+      new_task = form.save(commit=False)
+      new_task.user = request.user
+      new_task.save()
+      return redirect('tasks')
+    except ValueError:
+      contex = {
+        'form':TaskForm,
+        'messageerror':messages.warning(request, 'Ingrese datos válidos')
+        }
+      return render(request, 'tasks/task_create.html', contex)
 
 def cerrarSesion(request):
   logout(request)

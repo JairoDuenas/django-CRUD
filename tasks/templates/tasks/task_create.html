@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Task create
+{% endblock title %}
+
+{% block content %}
+
+<div class="container p-4">
+  <h3 class="text-center">Task create</h3>
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}  list-unstyled" {% endif %}>
+      <div class="text-bg-warning p-3">
+        {{ message }}
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+
+<div class="container py-4">
+  <form class="form-control" action="{% url 'task_create' %}" method="POST">
+    {% csrf_token %}
+    <div class="container py-4 text-center">
+      {{form.as_p}}
+    </div>
+    <div class="d-grid col-6 mx-auto mb-4">
+      <button class="btn btn-primary btn-lg">SAVE</button>
+    </div>
+  </form>
+</div>
+{% endblock content %}
