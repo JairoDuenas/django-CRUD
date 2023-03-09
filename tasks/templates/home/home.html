@@ -2,12 +2,19 @@
 {% load static %}
 
 {% block title %}
-  Home
+Home
 {% endblock title %}
 
-
 {% block content %}
-  <h1>Home</h1>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor ratione molestias rerum reprehenderit quibusdam ad dignissimos quod. Dolor dignissimos magnam placeat tempora omnis at. Eos similique recusandae voluptates sint tempore?</p>
+<main class="container py-4">
+  <section class="card card-body">
+    <h1 class="display-2 text-center text-secondary">Django App</h1>
+    <p class="fs-2 text">Gestión de tareas</p>
+    <p class="fs-5 text">Esta aplicación permite crear, actualizar y eliminar tareas, también podrá seleccionarlas como tareas completadas o tareas pendientes, si son tareas importantes o de baja relevancia. Para interactuar con la aplicación es necesario que se registre como nuevo usuario, de esta forma puede iniciar a gestionar sus tareas.</p>
+  </section>
+</main>
+<div class="container py-4 text-center">
+  <a href="{% url 'signup' %}" class="btn btn-primary btn-lg">Signup</a>
+  <a href="{% url 'signin' %}" class="btn btn-secondary btn-lg">Signin</a>
+</div>
 {% endblock content %}
-  

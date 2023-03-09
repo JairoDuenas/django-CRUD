@@ -9,38 +9,40 @@ Tasks
 {% block content %}
 
 <main class="container">
-  <div class="row">
-    <div class="col-md-6 offset-md-3 py-5">
+  <div class="col-md-8 offset-md-2 py-4">
 
-      {% for task in tasks %}
-      <ul class="list-group">
-        {% if task.datecompleted %}
-        <h3 class="text-center display-6">Task Completed</h3>
-        {% else %}
-        <h3 class="text-center display-6">Task Pending</h3>
-        {% endif %}
+    {% for task in tasks %}
+    {% if task.datecompleted %}
+    <h3 class="text-center fs-4 text text-secondary">Task Completed</h3>
+    {% else %}
+    <h3 class="text-center fs-4 text-secondary">Task Pending</h3>
+    {% endif %}
 
-        <li class="list-group-item">
-          <header class="d-flex justify-content-between">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <div class="card bg-transparent border-info">
+          <div class="card-header d-flex justify-content-between">
             <a class="text-decoration-none" href="{% url 'task_detail' task.id %}">
-
               {% if task.important %}
               <h3 class="fw-bold text-success">📌 {{task.title}}</h3>
               {% else %}
               <h3 class="fw-bold">{{task.title}}</h3>
               {% endif %}
-
-              <p class=" text-primary-emphasis fst-italic">{{task.user.username}}</p>
-              <p class="text-body">{{task.description}}</p>
-              <p class="text-body-secondary">{{task.datecompleted|date:"d M Y"}} </p>
             </a>
-          </header>
-
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
+            <p class=" text-body-secondary fst-italic">{{task.user.username}}</p>
+          </div>
+          <div class="card-body ">
+            <p class="card-text">{{task.description}}.</p>
+          </div>
+          <div class="card-footer text-body-secondary">
+            {{task.datecompleted|date:"d M Y"}}
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
   </div>
+
 </main>
 
 {% endblock content %}
