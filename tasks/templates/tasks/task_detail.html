@@ -20,23 +20,25 @@ Task details
         <p>{{error}}</p>
         {{form}}
         <div class="container py-4 d-flex justify-content-around">
-          <button class="btn btn-primary">Update</button>
-          <div class="d-flex justify-content-between">
-            <div class="conatainer">
-              <form action="{% url 'complete_task' task.id %}" method="POST">
-                {% csrf_token %}
-                <button class="btn btn-info">Completed</button>
-              </form>
-            </div>
-            <div class="container">
-              <form action="{% url 'delete_task' task.id %}" method="POST">
-                {% csrf_token %}
-                <button class="btn btn-danger">Delete</button>
-              </form>
-            </div>
-          </div>
+          <button class="btn btn-primary">Update
+          </button>
         </div>
       </form>
+
+      <div class="d-flex text-center">
+        <div class="container">
+          <form action="{% url 'complete_task' task.id %}" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-secondary">Complete</button>
+          </form>
+        </div>
+        <div class="container">
+          <form action="{% url 'delete_task' task.id %}" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </main>

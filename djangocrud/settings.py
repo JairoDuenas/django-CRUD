@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #'RENDER' not in os.environ
+DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = []
 
@@ -87,12 +87,11 @@ DATABASES = {
     }
 }
 
-'''
-'default': dj_database_url.config(
+"""'default': dj_database_url.config(
         default='postgresql://postgres:postgres@localhost:5432/postgres',
         conn_max_age=600
     )
-'''
+    """
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
